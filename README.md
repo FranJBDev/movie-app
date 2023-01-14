@@ -1,2 +1,2 @@
 
-ESta app consume la api de https://themoviedb.org
+Esta app consume la api de https://themoviedb.org
