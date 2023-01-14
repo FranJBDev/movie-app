@@ -1,21 +1,25 @@
-import { movies } from '../data/movies';
+// import { movies } from '../data/movies';
 import { useState, useEffect } from 'react';
 import Movie from './Movie';
 import './movies.css';
-
-const fetchMovies = () => {
-  return movies;
-};
+const API_KEY = process.env.REACT_APP_API_KEY
 
 const MovieContainer = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    const movies = fetchMovies();
-    setMovies(movies);
-  }, []);
+    async function fetchData() {
+      const response = await fetch(
+        'https://api.themoviedb.org/3/movie/now_playing?api_key=' + API_KEY + '&language=en-US&page=1'
+      );
+      const data = await response.json();
+      const movies = data.results;
 
-  console.log(fetchMovies());
+      console.log(' fetchMovies', movies);
+      setMovies(movies);
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="movie-container">

@@ -1,3 +1,5 @@
+// https://api.themoviedb.org/3/movie/now_playing?api_key=APIKEY&language=en-US&page=1
+
 export const movies = [
   {
     id: 1,
