@@ -17,18 +17,17 @@ const Movie = ({ movie }) => {
     return {id: i, name: genres[e]}
   })
 
-  console.log(title, arrGenre)
-
   return (
     <li className="movie">
-      <img src={'https://image.tmdb.org/t/p/w342' + poster_path} alt={title} />
+      <img src={'https://image.tmdb.org/t/p/w300' + poster_path} alt={title} />
       <h2> {title}</h2>
-      <p>Original title: {original_title}</p>
-      <p>was released on {release_date}</p>
-      <p>Original language: {original_language}</p>
-      <p>Rating: {rating}</p>
-      <p>Overview: {overview}</p>
-      <ul className="genres-list">
+      <p>Titulo original: {original_title}</p>
+      <p>Fecha de realización {release_date}</p>
+      <p>Lenguaje original: {original_language}</p>
+      {/* <p>Clasificacion: {rating}</p> */}
+      <h4>Sinopsis</h4>
+      <p>{overview}</p>
+      {/* <ul className="genres-list">
         <h3>Genres</h3>
         {arrGenre.map((genre) => (
           <li key={genre.id} className="movie">
@@ -37,7 +36,7 @@ const Movie = ({ movie }) => {
             </p>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </li>
   );
 };
