@@ -1,26 +1,43 @@
-// big image  https://image.tmdb.org/t/p/original
-// thumb https://image.tmdb.org/t/p/w780/
-
-// poster examples
-// https://image.tmdb.org/t/p/w92/bvYjhsbxOBwpm8xLE5BhdA3a8CZ.jpg
-// https://image.tmdb.org/t/p/w154/bvYjhsbxOBwpm8xLE5BhdA3a8CZ.jpg
-// https://image.tmdb.org/t/p/w185/bvYjhsbxOBwpm8xLE5BhdA3a8CZ.jpg
-// https://image.tmdb.org/t/p/w342/bvYjhsbxOBwpm8xLE5BhdA3a8CZ.jpg
-// https://image.tmdb.org/t/p/w500/bvYjhsbxOBwpm8xLE5BhdA3a8CZ.jpg
-// https://image.tmdb.org/t/p/w780/bvYjhsbxOBwpm8xLE5BhdA3a8CZ.jpg
-// https://image.tmdb.org/t/p/original/bvYjhsbxOBwpm8xLE5BhdA3a8CZ.jpg
+import { genres } from '../data/genres';
 
 const Movie = ({ movie }) => {
-  const { title, year, poster_path, rating, director, overview, backdrop_path } = movie;
+  const {
+    title,
+    genre_ids,
+    original_language,
+    original_title,
+    release_date,
+    poster_path,
+    rating,
+    overview,
+    backdrop_path,
+  } = movie;
+
+  const arrGenre = genre_ids.map((e, i)=>{
+    return {id: i, name: genres[e]}
+  })
+
+  console.log(title, arrGenre)
 
   return (
     <li className="movie">
       <img src={'https://image.tmdb.org/t/p/w342' + poster_path} alt={title} />
-      <p>
-        {title} by {director} was released on {year}
-      </p>
+      <h2> {title}</h2>
+      <p>Original title: {original_title}</p>
+      <p>was released on {release_date}</p>
+      <p>Original language: {original_language}</p>
       <p>Rating: {rating}</p>
       <p>Overview: {overview}</p>
+      <ul className="genres-list">
+        <h3>Genres</h3>
+        {arrGenre.map((genre) => (
+          <li key={genre.id} className="movie">
+            <p>
+              {genre.name} 
+            </p>
+          </li>
+        ))}
+      </ul>
     </li>
   );
 };
